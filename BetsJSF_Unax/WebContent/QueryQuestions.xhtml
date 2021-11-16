@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:view>
+	<h:head>
+		<title>QueryQuestions</title>
+		<h:outputStylesheet library="css" name="styleHasiera.css" />
+	</h:head>
+	<h:body>
+		<h:form id="queryForm">
+			<table>
+				<tr>
+					<td>
+						<h5>Gertaera eguna</h5>
+					</td>
+				</tr>
+				<tr>
+					<td><p:calendar id="data" value="#{query.data}"
+							navigator="false" mode="inline">
+							<p:ajax event="dateSelect" listener="#{query.getEvents}"
+								update=":queryForm:aukeratutakoData :queryForm:taulaGertaerak" />
+						</p:calendar></td>
+				</tr>
+				<tr>
+					<td><h:outputText id="aukeratutakoData"
+							value="#{query.dataString}" style="color:red" /></td>
+				</tr>
+				<tr>
+					<td><p:dataTable id="taulaGertaerak" value="#{query.gertaerak}"
+							var="item" selectionMode="single" selection="#{query.gertaera}"
+							border="1" rowKey="#{item.eventNumber}">
+							<p:ajax event="rowSelect" listener="#{query.getQuestions}"
+								update=":queryForm:aukeratutakoGertaera :queryForm:taulaGalderak"></p:ajax>
+							<p:column headerText="Gertaera#">#{item.eventNumber}</p:column>
+							<p:column headerText="Gertaera">#{item.description}</p:column>
+						</p:dataTable></td>
+				</tr>
+				<tr>
+					<td><h:outputText id="aukeratutakoGertaera"
+							value="#{query.gertaeraString}" style="color:blue" /></td>
+				</tr>
+				<tr>
+					<td><p:dataTable id="taulaGalderak" value="#{query.galderak}"
+							var="item" selectionMode="single" selection="#{query.galdera}"
+							border="1" rowKey="#{item.questionNumber}">
+							<p:column headerText="Galdera#">#{item.questionNumber}</p:column>
+							<p:column headerText="Galdera">#{item.question}</p:column>
+						</p:dataTable></td>
+				</tr>
+			</table>
+		</h:form>
+	</h:body>
+</f:view>
+</html>

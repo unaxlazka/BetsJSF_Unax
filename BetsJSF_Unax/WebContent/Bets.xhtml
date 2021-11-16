@@ -11,13 +11,14 @@
 		<h:outputStylesheet library="css" name="styleHasiera.css" />
 	</h:head>
 	<h:body>
-		<h:form id="nireForm">
+		<h:form>
 			<h3>Aukeratu</h3>
-			<table>
-				<tr>
-					<td><h:commandButton action="queryQuestion" value="QueryQuestion" /></td>
-				</tr>
-			</table>
+			<h:panelGroup layout="block">
+				<h:commandButton action="queryQuestions" value="Query question" />
+			</h:panelGroup>
+			<h:panelGroup layout="block">
+				<h:commandButton action="createQuestions" value="Create question" />
+			</h:panelGroup>
 			<h:messages style="color:blue" id="mezuak" />
 		</h:form>
 	</h:body>

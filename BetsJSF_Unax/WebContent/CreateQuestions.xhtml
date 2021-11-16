@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:view>
+	<h:head>
+		<title>Galdera sortu</title>
+		<h:outputStylesheet library="css" name="styleHasiera.css" />
+	</h:head>
+	<h:body>
+		<h:form id="createForm">
+			<table>
+				<tr>
+					<td>
+						<h5>Gertaera eguna</h5>
+					</td>
+				</tr>
+				<tr>
+					<td><p:calendar id="data" value="#{create.data}"
+							navigator="false" mode="inline">
+							<p:ajax event="dateSelect" listener="#{create.getEvents}"
+								update=":createForm:aukeratutakoData :createForm:zerrenda" />
+						</p:calendar></td>
+				</tr>
+				<tr>
+					<td><h:outputText id="aukeratutakoData"
+							value="#{create.dataString}" style="color:red" /></td>
+				</tr>
+
+			</table>
+		</h:form>
+	</h:body>
+</f:view>
+</html>

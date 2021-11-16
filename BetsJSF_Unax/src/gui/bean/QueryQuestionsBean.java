@@ -15,7 +15,7 @@ import domain.Event;
 import domain.Question;
 
 public class QueryQuestionsBean {
-	private static Date data;
+	private Date data;
 
 	private String dataString;
 	private Vector<Event> gertaerak;
@@ -29,8 +29,8 @@ public class QueryQuestionsBean {
 
 	public QueryQuestionsBean() {
 		this.dataString = "Gertaerak";
-		this.gertaeraString = "Galderak";
 		this.gertaerak = new Vector<Event>();
+		this.gertaeraString = "Galderak";
 		this.galderak = new Vector<Question>();
 		this.blFacade = FacadeBean.getBusinessLogic();
 	}
@@ -117,7 +117,7 @@ public class QueryQuestionsBean {
 		this.gertaeraString = gertaeraString;
 	}
 
-	public static String getHilabeteIzena() {
+	public String getHilabeteIzena() {
 		int hil = data.getMonth();
 		if (hil == 0)
 			return "Urt";

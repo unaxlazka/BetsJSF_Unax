@@ -33,17 +33,29 @@
 					<td><h:selectOneMenu id="zerrenda" value="#{create.gertaera}"
 							converter="omnifaces.SelectItemsConverter">
 							<f:selectItems value="#{create.gertaerak}" />
-							<f:ajax event="change" listener="#{create.eguneratzeaIkusi}"
+							<f:ajax event="change" listener="#{create.eguneratzeaIkusiEtaDisableAztertu}"
 								render="mezuak" />
 						</h:selectOneMenu></td>
 				</tr>
 				<tr>
 					<td><p>Galdera:</p></td>
-					<td><h:inputText id="galderaBerria" value=""></h:inputText></td>
+					<td><h:inputText id="galderaBerria" value="#{create.galBer}">
+							<f:validateLength minimum="1" />
+							<f:ajax event="change" listener="#{create.disableAztertu}"
+								render="botoia mezuak" />
+						</h:inputText></td>
 				</tr>
 				<tr>
 					<td><p>Apostu Min:</p></td>
-					<td><h:inputText id="apostuMin" value=""></h:inputText></td>
+					<td><h:inputText id="apostuMin" value="#{create.aposMin}">
+							<f:convertNumber pattern="0.00"></f:convertNumber>
+							<f:ajax event="change" listener="#{create.disableAztertu}"
+								render="botoia apostuMin mezuak" />
+						</h:inputText></td>
+				</tr>
+				<tr>
+					<td><h:commandButton id="botoia" value="Sortu galdera"
+							action="#{create.galderaSortu}" disabled="#{create.disable}" /></td>
 				</tr>
 				<tr>
 					<td><h:messages style="color:blue" id="mezuak" /></td>

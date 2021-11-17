@@ -29,6 +29,25 @@
 					<td><h:outputText id="aukeratutakoData"
 							value="#{create.dataString}" style="color:red" /></td>
 				</tr>
+				<tr>
+					<td><h:selectOneMenu id="zerrenda" value="#{create.gertaera}"
+							converter="omnifaces.SelectItemsConverter">
+							<f:selectItems value="#{create.gertaerak}" />
+							<f:ajax event="change" listener="#{create.eguneratzeaIkusi}"
+								render="mezuak" />
+						</h:selectOneMenu></td>
+				</tr>
+				<tr>
+					<td><p>Galdera:</p></td>
+					<td><h:inputText id="galderaBerria" value=""></h:inputText></td>
+				</tr>
+				<tr>
+					<td><p>Apostu Min:</p></td>
+					<td><h:inputText id="apostuMin" value=""></h:inputText></td>
+				</tr>
+				<tr>
+					<td><h:messages style="color:blue" id="mezuak" /></td>
+				</tr>
 
 			</table>
 		</h:form>

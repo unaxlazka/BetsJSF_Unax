@@ -3,6 +3,10 @@ package gui.bean;
 import java.util.Date;
 import java.util.Vector;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.faces.event.AjaxBehaviorEvent;
+
 import bl.bean.FacadeBean;
 import businessLogic.BLFacade;
 import domain.Event;
@@ -15,14 +19,27 @@ public class CreateQuestionBean {
 	private Vector<Event> gertaerak;
 	private Event gertaera;
 	
+	private String hutsa;
+	
 	private BLFacade blFacade;
 
 	public CreateQuestionBean() {
 		this.dataString = "Gertaerak";
 		this.gertaerak = new Vector<Event>();
+		
+		this.hutsa = "Hutsa";
+		
 		this.blFacade = FacadeBean.getBusinessLogic();
 	}
 	
+	public String getHutsa() {
+		return hutsa;
+	}
+
+	public void setHutsa(String hutsa) {
+		this.hutsa = hutsa;
+	}
+
 	public Date getData() {
 		return data;
 	}
@@ -68,6 +85,11 @@ public class CreateQuestionBean {
 			this.dataString = "Ez daude gertaerak: " + urt + " " + hil + " " + eg;
 			this.gertaerak = new Vector<Event>();// Aurretik zeuden gertaerak ezabatu
 		}
+	}
+	
+	public void eguneratzeaIkusi(AjaxBehaviorEvent event) {
+		FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage("Gertaera eguneratu da:" + gertaera.getDescription() + "/" + gertaera.getEventNumber()));
 	}
 	
 	public String getHilabeteIzena() {

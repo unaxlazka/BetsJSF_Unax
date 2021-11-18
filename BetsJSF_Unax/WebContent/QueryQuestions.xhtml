@@ -15,24 +15,18 @@
 			<table>
 				<tr>
 					<td>
-						<h5>Gertaera eguna</h5>
-					</td>
-				</tr>
-				<tr>
-					<td><p:calendar id="data" value="#{query.data}"
-							navigator="false" mode="inline">
+						<h5>Gertaera eguna</h5> <p:calendar id="data"
+							value="#{query.data}" navigator="false" mode="inline">
 							<p:ajax event="dateSelect" listener="#{query.getEvents}"
 								update=":queryForm:aukeratutakoData :queryForm:taulaGertaerak" />
-						</p:calendar></td>
-				</tr>
-				<tr>
+						</p:calendar>
+					</td>
+				
 					<td><h:outputText id="aukeratutakoData"
-							value="#{query.dataString}" style="color:red" /></td>
-				</tr>
-				<tr>
-					<td><p:dataTable id="taulaGertaerak" value="#{query.gertaerak}"
-							var="item" selectionMode="single" selection="#{query.gertaera}"
-							border="1" rowKey="#{item.eventNumber}">
+							value="#{query.dataString}" style="color:red" /> <p:dataTable
+							id="taulaGertaerak" value="#{query.gertaerak}" var="item"
+							selectionMode="single" selection="#{query.gertaera}" border="1"
+							rowKey="#{item.eventNumber}">
 							<p:ajax event="rowSelect" listener="#{query.getQuestions}"
 								update=":queryForm:aukeratutakoGertaera :queryForm:taulaGalderak"></p:ajax>
 							<p:column headerText="Gertaera#">#{item.eventNumber}</p:column>
@@ -41,10 +35,8 @@
 				</tr>
 				<tr>
 					<td><h:outputText id="aukeratutakoGertaera"
-							value="#{query.gertaeraString}" style="color:blue" /></td>
-				</tr>
-				<tr>
-					<td><p:dataTable id="taulaGalderak" value="#{query.galderak}"
+							value="#{query.gertaeraString}" style="color:blue" />
+						<p:dataTable id="taulaGalderak" value="#{query.galderak}"
 							var="item" selectionMode="single" selection="#{query.galdera}"
 							border="1" rowKey="#{item.questionNumber}">
 							<p:column headerText="Galdera#">#{item.questionNumber}</p:column>

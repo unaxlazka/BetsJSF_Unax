@@ -10,6 +10,7 @@ import javax.faces.event.AjaxBehaviorEvent;
 import bl.bean.FacadeBean;
 import businessLogic.BLFacade;
 import domain.Event;
+import domain.Question;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
 
@@ -21,14 +22,16 @@ public class CreateQuestionBean {
 	private Vector<Event> gertaerak;
 	private Event gertaera;
 	private String galBer;
-	private double aposMin;
+//	private double aposMin;
+	private String aposMin;
 	private boolean disable;
+//	private String lisau;//Hau erabiliko da taulan agertuko den balioa
 
-	public double getAposMin() {
+	public String getAposMin() {
 		return aposMin;
 	}
 
-	public void setAposMin(double aposMin) {
+	public void setAposMin(String aposMin) {
 		this.aposMin = aposMin;
 	}
 
@@ -53,7 +56,9 @@ public class CreateQuestionBean {
 		this.disable = true;
 
 		this.galBer = "";
-		this.aposMin = 0;
+		this.aposMin = "";
+
+//		this.listakoAukeratua = gertaeraEdoHutsa();
 
 		this.blFacade = FacadeBean.getBusinessLogic();
 	}
@@ -108,7 +113,8 @@ public class CreateQuestionBean {
 			this.dataString = "Gertaerak: " + urt + " " + hil + " " + eg;
 			this.gertaerak = gerList;
 		} else {// Taularen gaineko testuaren balioa aldatu behar diot
-			this.gertaera=null;//Hau egiten dut data berri bat aukeratzerakoan aurreko gertaera jada gorde ez dadin.
+			this.gertaera = null;// Hau egiten dut data berri bat aukeratzerakoan aurreko gertaera jada gorde ez
+									// dadin.
 			this.dataString = "Ez daude gertaerak: " + urt + " " + hil + " " + eg;
 			this.gertaerak = new Vector<Event>();// Aurretik zeuden gertaerak ezabatu
 		}
@@ -120,22 +126,45 @@ public class CreateQuestionBean {
 	}
 
 	public void disableAztertu(AjaxBehaviorEvent event) {
-		if (this.aposMin != 0 && this.galBer != "" && this.gertaera != null) {
-			this.disable = false;
-		} else {
+		try {
+			if (Float.parseFloat(this.aposMin) > 0 && this.galBer != "" && !galderaAztertu() && this.gertaera != null
+					&& !this.gertaerak.isEmpty()) {
+
+				this.disable = false;
+			} else {
+				this.disable = true;
+			}
+		} catch (Exception e) {//parseFloat saltatzen badu, hau da, ez badu aposMin-ek zenbki bat gordetzen, botoia disable jarriko da
 			this.disable = true;
 		}
 	}
-	
+
 	public void eguneratzeaIkusiEtaDisableAztertu(AjaxBehaviorEvent event) {
 		eguneratzeaIkusi(event);
 		disableAztertu(event);
 	}
 
-	public void galderaSortu() throws EventFinished, QuestionAlreadyExist {
-		this.blFacade.createQuestion(gertaera, galBer, (float) aposMin);
+	public void getEventsEtaDisableAztertu(AjaxBehaviorEvent event) {
+		getEvents();
+		disableAztertu(event);
 	}
 
+	public String gertaeraEdoHutsa() {
+		if (this.gertaerak.size() == 0)
+			return getHutsa();
+		else
+			return getGertaera().getDescription();
+	}
+
+	public void galderaSortu() throws EventFinished, QuestionAlreadyExist {
+		this.blFacade.createQuestion(gertaera, galBer, Float.parseFloat(aposMin));
+	}
+	
+	public boolean galderaAztertu() {
+//		Vector<Question> galderak = gertaera.getQuestions();
+		return gertaera.DoesQuestionExists(galBer);
+	}
+	
 	public boolean isDisable() {
 		return disable;
 	}

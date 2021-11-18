@@ -21,8 +21,8 @@
 				<tr>
 					<td><p:calendar id="data" value="#{create.data}"
 							navigator="false" mode="inline">
-							<p:ajax event="dateSelect" listener="#{create.getEvents}"
-								update=":createForm:aukeratutakoData :createForm:zerrenda" />
+							<p:ajax event="dateSelect" listener="#{create.getEventsEtaDisableAztertu}"
+								update=":createForm:aukeratutakoData :createForm:zerrenda :createForm:botoia" />
 						</p:calendar></td>
 				</tr>
 				<tr>
@@ -34,7 +34,7 @@
 							converter="omnifaces.SelectItemsConverter">
 							<f:selectItems value="#{create.gertaerak}" />
 							<f:ajax event="change" listener="#{create.eguneratzeaIkusiEtaDisableAztertu}"
-								render="mezuak" />
+								render="mezuak botoia" />
 						</h:selectOneMenu></td>
 				</tr>
 				<tr>
@@ -48,7 +48,6 @@
 				<tr>
 					<td><p>Apostu Min:</p></td>
 					<td><h:inputText id="apostuMin" value="#{create.aposMin}">
-							<f:convertNumber pattern="0.00"></f:convertNumber>
 							<f:ajax event="change" listener="#{create.disableAztertu}"
 								render="botoia apostuMin mezuak" />
 						</h:inputText></td>

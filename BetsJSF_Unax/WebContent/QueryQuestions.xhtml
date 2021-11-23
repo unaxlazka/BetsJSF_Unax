@@ -12,18 +12,18 @@
 	</h:head>
 	<h:body>
 		<h:form id="queryForm">
-			<table>
+			<table style="width: 100%">
 				<tr>
-					<td>
+					<td style="width: 40%; padding-left: 8%">
 						<h5>Gertaera eguna</h5> <p:calendar id="data"
 							value="#{query.data}" navigator="false" mode="inline">
 							<p:ajax event="dateSelect" listener="#{query.getEvents}"
 								update=":queryForm:aukeratutakoData :queryForm:taulaGertaerak" />
 						</p:calendar>
 					</td>
-				
-					<td><h:outputText id="aukeratutakoData"
-							value="#{query.dataString}" style="color:red" /> <p:dataTable
+
+					<td style="width: 60%; padding-left:2%"><h:outputText id="aukeratutakoData"
+							value="#{query.dataString}" style="text-align:justify" /> <p:dataTable
 							id="taulaGertaerak" value="#{query.gertaerak}" var="item"
 							selectionMode="single" selection="#{query.gertaera}" border="1"
 							rowKey="#{item.eventNumber}">
@@ -34,11 +34,11 @@
 						</p:dataTable></td>
 				</tr>
 				<tr>
-					<td><h:outputText id="aukeratutakoGertaera"
-							value="#{query.gertaeraString}" style="color:blue" />
-						<p:dataTable id="taulaGalderak" value="#{query.galderak}"
-							var="item" selectionMode="single" selection="#{query.galdera}"
-							border="1" rowKey="#{item.questionNumber}">
+					<td style="padding-left: 25%; padding-right:25%" colspan="2"><h:outputText id="aukeratutakoGertaera"
+							value="#{query.gertaeraString}"/> <p:dataTable
+							id="taulaGalderak" value="#{query.galderak}" var="item"
+							selectionMode="single" selection="#{query.galdera}" border="1"
+							rowKey="#{item.questionNumber}">
 							<p:column headerText="Galdera#">#{item.questionNumber}</p:column>
 							<p:column headerText="Galdera">#{item.question}</p:column>
 						</p:dataTable></td>

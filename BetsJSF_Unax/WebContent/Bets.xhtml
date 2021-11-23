@@ -11,15 +11,23 @@
 		<h:outputStylesheet library="css" name="styleHasiera.css" />
 	</h:head>
 	<h:body>
-		<h:form  target="_blank">
-			<h3>Aukeratu</h3>
-			<h:panelGroup layout="block">
-				<h:commandButton action="queryQuestions" value="Galderak kontsultatu" />
-			</h:panelGroup>
-			<h:panelGroup layout="block">
-				<h:commandButton action="createQuestions" value="Galdera sortu" />
-			</h:panelGroup>
-			<h:messages style="color:blue" id="mezuak" />
+		<h:form target="_blank">
+			<table
+				style="text-align: center; width: 100%;">
+				<tr>
+					<td><p style="font-size: 35px;">Aukeratu</p></td>
+				</tr>
+				<tr>
+					<td style="padding-bottom: 10px"><h:commandButton
+							action="queryQuestions" value="Galderak kontsultatu"
+							style="width: 350px; font-size: 35px;" /></td>
+				</tr>
+				<tr>
+					<td style="padding-top: 10px"><h:commandButton
+							action="createQuestions" value="Galdera sortu"
+							style="width: 350px; font-size: 35px;" /></td>
+				</tr>
+			</table>
 		</h:form>
 	</h:body>
 </f:view>

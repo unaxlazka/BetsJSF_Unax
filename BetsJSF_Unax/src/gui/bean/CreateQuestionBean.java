@@ -25,6 +25,7 @@ public class CreateQuestionBean {
 //	private double aposMin;
 	private String aposMin;
 	private boolean disable;
+	private String mezua;
 //	private String lisau;//Hau erabiliko da taulan agertuko den balioa
 
 	public String getAposMin() {
@@ -127,16 +128,36 @@ public class CreateQuestionBean {
 
 	public void disableAztertu(AjaxBehaviorEvent event) {
 		try {
-			if (Float.parseFloat(this.aposMin) > 0 && this.galBer != "" && !galderaAztertu() && this.gertaera != null
-					&& !this.gertaerak.isEmpty()) {
-
-				this.disable = false;
-			} else {
+			if (this.gertaerak.isEmpty() || this.gertaera == null) {// Kasu honetan esan nahi du gertaera ez dela
+																	// existitzen edota jasota guguna jada ez dela
+																	// egokia
+				this.mezua = "Gertaera aukeratu behar duzu.";
 				this.disable = true;
+			} else if (this.galBer == "") {
+				this.mezua = "Galdera bat idatzi behar duzu.";
+				this.disable = true;
+			} else if (galderaAztertu()) {
+				this.mezua = "Gertaera honetan jada galdera hau existitzen da.";
+				this.disable = true;
+			} else if (!(Float.parseFloat(this.aposMin) > 0)) {
+				this.mezua = "Sartu berri duzun apostu minimo balioa ez da nahikoa.";
+				this.disable = true;
+			} else {
+				this.mezua = "";
+				this.disable = false;
 			}
-		} catch (Exception e) {//parseFloat saltatzen badu, hau da, ez badu aposMin-ek zenbki bat gordetzen, botoia disable jarriko da
+		} catch (Exception e) {
+			this.mezua = "Apostu minimoaren balioa zenbaki bat izan behar du.";
 			this.disable = true;
 		}
+	}
+
+	public String getMezua() {
+		return mezua;
+	}
+
+	public void setMezua(String mezua) {
+		this.mezua = mezua;
 	}
 
 	public void eguneratzeaIkusiEtaDisableAztertu(AjaxBehaviorEvent event) {
@@ -158,13 +179,14 @@ public class CreateQuestionBean {
 
 	public void galderaSortu() throws EventFinished, QuestionAlreadyExist {
 		this.blFacade.createQuestion(gertaera, galBer, Float.parseFloat(aposMin));
+		this.mezua="Galdera berria sortu da";
 	}
-	
+
 	public boolean galderaAztertu() {
 //		Vector<Question> galderak = gertaera.getQuestions();
 		return gertaera.DoesQuestionExists(galBer);
 	}
-	
+
 	public boolean isDisable() {
 		return disable;
 	}

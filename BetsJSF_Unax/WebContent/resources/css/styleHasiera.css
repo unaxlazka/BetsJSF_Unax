@@ -1,9 +1,7 @@
 body {
 	background-color: lightblue;
-	text-align: center;
 }
 
-panelGroup {
-	text-align: center;
+.botoiak {
+	width : 100px;
 }
-

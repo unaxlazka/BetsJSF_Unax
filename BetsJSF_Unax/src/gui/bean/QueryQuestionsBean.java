@@ -2,7 +2,7 @@ package gui.bean;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Vector;
+import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -18,20 +18,20 @@ public class QueryQuestionsBean {
 	private Date data;
 
 	private String dataString;
-	private Vector<Event> gertaerak;
+	private List<Event> gertaerak;
 	private Event gertaera;
 
 	private String gertaeraString;
-	private Vector<Question> galderak;
+	private List<Question> galderak;
 	private Question galdera;
 
 	private BLFacade blFacade;
 
 	public QueryQuestionsBean() {
 		this.dataString = "Gertaerak";
-		this.gertaerak = new Vector<Event>();
+		this.gertaerak = new ArrayList<Event>();
 		this.gertaeraString = "Galderak";
-		this.galderak = new Vector<Question>();
+		this.galderak = new ArrayList<Question>();
 		this.blFacade = FacadeBean.getBusinessLogic();
 	}
 
@@ -55,33 +55,33 @@ public class QueryQuestionsBean {
 		Integer eg = data.getDate();
 		String hil = getHilabeteIzena();
 		Integer urt = data.getYear() + 1900;
-		Vector<Event> gerList = blFacade.getEvents(data);
+		List<Event> gerList = blFacade.getEvents(data);
 		if (gerList.size() != 0) {
 			// Taularen gaineko testuaren balioa aldatu behar diot
 			this.dataString = "Gertaerak: " + urt + " " + hil + " " + eg;
 			this.gertaerak = gerList;
 		} else {// Taularen gaineko testuaren balioa aldatu behar diot
 			this.dataString = "Ez daude gertaerak: " + urt + " " + hil + " " + eg;
-			this.gertaerak = new Vector<Event>();// Aurretik zeuden gertaerak ezabatu
+			this.gertaerak = new ArrayList<Event>();// Aurretik zeuden gertaerak ezabatu
 		}
 	}
 
 	public void getQuestions() {
-		Vector<Question> galList = gertaera.getQuestions();
+		List<Question> galList = gertaera.getQuestions();
 		if (galList.size() != 0) {
 			this.gertaeraString = "Galderak hurrengo gertaerarako " + gertaera.getDescription();
 			this.galderak = galList;
 		} else {
 			this.gertaeraString = "Ez daude galderak hurrengo gertaerarako : " + gertaera.getDescription();
-			this.galderak = new Vector<Question>();
+			this.galderak = new ArrayList<Question>();
 		}
 	}
 
-	public Vector<Question> getGalderak() {
+	public List<Question> getGalderak() {
 		return galderak;
 	}
 
-	public void setGalderak(Vector<Question> galderak) {
+	public void setGalderak(List<Question> galderak) {
 		this.galderak = galderak;
 	}
 
@@ -93,11 +93,11 @@ public class QueryQuestionsBean {
 		this.galdera = galdera;
 	}
 
-	public Vector<Event> getGertaerak() {
+	public List<Event> getGertaerak() {
 		return gertaerak;
 	}
 
-	public void setGertaerak(Vector<Event> gertaerak) {
+	public void setGertaerak(List<Event> gertaerak) {
 		this.gertaerak = gertaerak;
 	}
 

@@ -3,6 +3,7 @@ package bl.bean;
 import businessLogic.BLFacade;
 import businessLogic.BLFacadeImplementation;
 import dataAccess.DataAccess;
+import dataAccess.DataAccessHibernate;
 
 public class FacadeBean {
 	private static FacadeBean singleton = new FacadeBean();
@@ -10,7 +11,7 @@ public class FacadeBean {
 
 	private FacadeBean() {
 		try {
-			facadeInterface = new BLFacadeImplementation(new DataAccess());
+			facadeInterface = new BLFacadeImplementation(new DataAccessHibernate());
 		} catch (Exception e) {
 			System.out.println("FacadeBean: negozioaren logika sortzean errorea: " + e.getMessage());
 		}

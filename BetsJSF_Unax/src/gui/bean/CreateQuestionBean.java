@@ -1,6 +1,8 @@
 package gui.bean;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Vector;
 
 import javax.faces.application.FacesMessage;
@@ -19,7 +21,7 @@ public class CreateQuestionBean {
 	private Date data;
 
 	private String dataString;
-	private Vector<Event> gertaerak;
+	private List<Event> gertaerak;
 	private Event gertaera;
 	private String galBer;
 //	private double aposMin;
@@ -50,7 +52,7 @@ public class CreateQuestionBean {
 
 	public CreateQuestionBean() {
 		this.dataString = "Gertaerak";
-		this.gertaerak = new Vector<Event>();
+		this.gertaerak = new ArrayList<Event>();
 
 		this.hutsa = "Hutsa";
 
@@ -88,11 +90,11 @@ public class CreateQuestionBean {
 		this.dataString = dataString;
 	}
 
-	public Vector<Event> getGertaerak() {
+	public List<Event> getGertaerak() {
 		return gertaerak;
 	}
 
-	public void setGertaerak(Vector<Event> gertaerak) {
+	public void setGertaerak(List<Event> gertaerak) {
 		this.gertaerak = gertaerak;
 	}
 
@@ -108,7 +110,7 @@ public class CreateQuestionBean {
 		Integer eg = data.getDate();
 		String hil = getHilabeteIzena();
 		Integer urt = data.getYear() + 1900;
-		Vector<Event> gerList = blFacade.getEvents(data);
+		List<Event> gerList = blFacade.getEvents(data);
 		if (gerList.size() != 0) {
 			// Taularen gaineko testuaren balioa aldatu behar diot
 			this.dataString = "Gertaerak: " + urt + " " + hil + " " + eg;
@@ -117,7 +119,7 @@ public class CreateQuestionBean {
 			this.gertaera = null;// Hau egiten dut data berri bat aukeratzerakoan aurreko gertaera jada gorde ez
 									// dadin.
 			this.dataString = "Ez daude gertaerak: " + urt + " " + hil + " " + eg;
-			this.gertaerak = new Vector<Event>();// Aurretik zeuden gertaerak ezabatu
+			this.gertaerak = new ArrayList<Event>();// Aurretik zeuden gertaerak ezabatu
 		}
 	}
 

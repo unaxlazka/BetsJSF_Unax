@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.Vector;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -26,7 +25,8 @@ import exceptions.QuestionAlreadyExist;
 /**
  * It implements the data access to the objectDb database
  */
-public class DataAccess implements DataAccessInterface {
+public class DataAccess {
+//	public class DataAccess implements DataAccessInterface {
 	protected static EntityManager db;
 	protected static EntityManagerFactory emf;
 
@@ -234,7 +234,7 @@ public class DataAccess implements DataAccessInterface {
 		return res;
 	}
 
-	@Override
+//	@Override
 	public void open() {
 
 		System.out.println("Opening DataAccess instance => isDatabaseLocal: " + c.isDatabaseLocal()
@@ -270,7 +270,7 @@ public class DataAccess implements DataAccessInterface {
 		System.out.println("DataBase closed");
 	}
 
-	@Override
+//	@Override
 	public void emptyDatabase() {
 
 		File f = new File(c.getDbFilename());

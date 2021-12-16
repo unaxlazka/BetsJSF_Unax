@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import domain.Erabiltzailea;
 import domain.Event;
 import domain.Question;
 import exceptions.QuestionAlreadyExist;
@@ -61,6 +62,24 @@ public interface DataAccessInterface {
 	 */
 	ArrayList<Date> getEventsMonth(Date date);
 
+	/*
+	 * Metodo honek erabiltzaile berri bat sortuko du
+	 * 
+	 * @param erabiltzaile berriaren izena
+	 * @param erabiltzaile berriaren pasahitza
+	 *  
+	 */
+	void register(String izena, String pasahitza);
+	
+	/*
+	 * Metodo honek erabiltzaile bat bilatuko du datu basean
+	 * eta aurkitu badu, erabiltzaile hori itzuliko du
+	 * 
+	 * @param bilatuko duen erabiltzailearen izena
+	 * @param erabiltzailea konprobatzeko idatzitako pasahitza
+	 * @return Erabiltzailea, sartutako datuak erabiltzaile batekin baldin badatoz
+	 */
+	Erabiltzailea login(String izena, String pasahitza);
 	
 	/**
 	 * This method checks if the question has been previously added to the event 
@@ -70,7 +89,5 @@ public interface DataAccessInterface {
 	 * @return true if the event contains this the questions, false in other case
 	 */
 	boolean existQuestion(Event event, String question);
-
 	
-
 }

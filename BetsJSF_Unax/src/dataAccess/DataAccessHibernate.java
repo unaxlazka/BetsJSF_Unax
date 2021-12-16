@@ -11,6 +11,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 import configuration.UtilDate;
+import domain.Erabiltzailea;
 import domain.Event;
 import domain.Question;
 import util.HibernateUtil;
@@ -233,6 +234,47 @@ public class DataAccessHibernate implements DataAccessInterface {
 		}
 		session.getTransaction().commit();
 		return res;
+	}
+
+	/*
+	 * void bezala definitu dut, ez dudalako nahi register egiterakoan kontua
+	 * logeatzea. Beraz, ez dut beharrik izango ezer jasotzeko.
+	 */
+	public void register(String izena, String pasahitza) {
+
+		System.out.println("Erabiltzaile berria sortzen:");
+
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+
+		Erabiltzailea e = new Erabiltzailea(izena, pasahitza);
+
+		session.persist(e);
+
+		session.getTransaction().commit();
+
+		System.out.println("Erabiltzaile berria sortu da");
+	}
+
+	public Erabiltzailea login(String izena, String pasahitza) {
+
+		System.out.println("Erabiltzailea bilatzen datu basean:");
+
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+
+		Query q = session.createQuery("FROM Erabiltzailea erab WHERE erab.erabIzena = :izena AND erab.pasahitza = :pasahitza");
+		q.setParameter("izena", izena);
+		q.setParameter("pasahitza", pasahitza);
+
+		List<Erabiltzailea> erabiltzaileak = q.list();
+
+		session.getTransaction().commit();
+		
+		if (erabiltzaileak.size() != 1)
+			return null;
+		else
+			return erabiltzaileak.get(0);
 	}
 
 	@Override

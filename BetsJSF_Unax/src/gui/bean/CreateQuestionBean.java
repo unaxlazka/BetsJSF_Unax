@@ -3,7 +3,6 @@ package gui.bean;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Vector;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -12,7 +11,6 @@ import javax.faces.event.AjaxBehaviorEvent;
 import bl.bean.FacadeBean;
 import businessLogic.BLFacade;
 import domain.Event;
-import domain.Question;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
 

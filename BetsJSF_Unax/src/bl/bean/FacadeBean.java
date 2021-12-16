@@ -2,7 +2,6 @@ package bl.bean;
 
 import businessLogic.BLFacade;
 import businessLogic.BLFacadeImplementation;
-import dataAccess.DataAccess;
 import dataAccess.DataAccessHibernate;
 
 public class FacadeBean {

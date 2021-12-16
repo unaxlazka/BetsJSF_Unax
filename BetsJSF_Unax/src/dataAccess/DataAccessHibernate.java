@@ -242,39 +242,61 @@ public class DataAccessHibernate implements DataAccessInterface {
 	 */
 	public void register(String izena, String pasahitza) {
 
-		System.out.println("Erabiltzaile berria sortzen:");
+		if (!existUser(izena)) {
+			System.out.println("Erabiltzaile berria sortzen:\n");
 
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
+			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+			session.beginTransaction();
 
-		Erabiltzailea e = new Erabiltzailea(izena, pasahitza);
+			Erabiltzailea e = new Erabiltzailea(izena, pasahitza);
 
-		session.persist(e);
+			session.persist(e);
 
-		session.getTransaction().commit();
+			session.getTransaction().commit();
 
-		System.out.println("Erabiltzaile berria sortu da");
+			System.out.println("Erabiltzaile berria sortu da\n");
+		} else
+			System.out.println("Erabiltzaile izen hori ezin duzu erabili\n");
 	}
 
 	public Erabiltzailea login(String izena, String pasahitza) {
 
-		System.out.println("Erabiltzailea bilatzen datu basean:");
+		System.out.println("Erabiltzailea bilatzen datu basean:\n");
 
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
-		Query q = session.createQuery("FROM Erabiltzailea erab WHERE erab.erabIzena = :izena AND erab.pasahitza = :pasahitza");
+		Query q = session
+				.createQuery("FROM Erabiltzailea erab WHERE erab.erabIzena = :izena AND erab.pasahitza = :pasahitza");
 		q.setParameter("izena", izena);
 		q.setParameter("pasahitza", pasahitza);
 
 		List<Erabiltzailea> erabiltzaileak = q.list();
 
 		session.getTransaction().commit();
-		
+
 		if (erabiltzaileak.size() != 1)
 			return null;
 		else
 			return erabiltzaileak.get(0);
+	}
+
+	public boolean existUser(String izena) {
+
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		
+		Query q = session.createQuery("FROM Erabiltzailea erab WHERE erab.erabIzena = :izena");
+		q.setParameter("izena", izena);
+		
+		List<Erabiltzailea> erabiltzaileak = q.list();
+		
+		session.getTransaction().commit();
+		
+		if (erabiltzaileak.size() != 1)
+			return false;
+		else
+			return true;
 	}
 
 	@Override

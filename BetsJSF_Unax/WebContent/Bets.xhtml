@@ -25,16 +25,23 @@
 				<tr>
 					<td style="padding-top: 10px"><h:commandButton
 							action="createQuestions" value="Galdera sortu"
-							style="width: 350px; font-size: 35px;" /></td>
-				</tr>
-				<tr>
-					<td><h:commandButton
-							action="register" value="Erregistratu" rendered="#{button.hide}"
-							style="width: 350px; font-size: 35px;" /></td>
-				
-					<td><h:commandButton
-							action="login" value="Logeatu"
 							style="width: 350px; font-size: 35px;" /></td></tr>
+			</table>
+		</h:form>
+		<h:form>
+			<table style="text-align: center; width: 100%;">
+				<tr>
+					<td colspan="2" style="text-align: right"><h:commandButton
+							action="register" value="Erregistratu" rendered="#{button.hide}"
+							style="width: 80px; font-size: 10px;" />
+							<h:commandButton
+							action="login" value="Logeatu"  rendered="#{button.hide}"
+							style="width: 60px; font-size: 10px;" /></td></tr>
+				<tr><td colspan="2" style="text-align: right">
+						<h:commandButton
+							action="#{login.erabiltzaileaLogout}" value="Logout" rendered="#{button.nothide}"
+							style="width: 80px; font-size: 10px;" target="_self"/>
+					</td></tr>
 			</table>
 		</h:form>
 	</h:body>

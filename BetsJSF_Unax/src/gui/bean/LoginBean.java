@@ -72,8 +72,12 @@ public class LoginBean {
 	}
 
 	public String erabiltzaileaLogeatu() {
-		u = blFacade.login(this.erabIzena, this.pasahitza);
+		this.u = blFacade.login(this.erabIzena, this.pasahitza);
 		return "loged";
+	}
+	
+	public void erabiltzaileaLogout() {
+		this.u = null;
 	}
 
 	public void disableAztertu(AjaxBehaviorEvent event) {

@@ -54,6 +54,13 @@ public interface DataAccessInterface {
 	 */
 	ArrayList<Event> getEvents(Date date);
 
+	
+	/**
+	 * This method retrieves from the database the events of a given date 
+	 * 
+	 * @return collection of events
+	 */
+	ArrayList<Event> getEvents();
 	/**
 	 * This method retrieves from the database the dates a month for which there are events
 	 * 

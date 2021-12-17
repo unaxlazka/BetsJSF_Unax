@@ -63,7 +63,7 @@
 			</table>
 		</h:form>
 		<h:form>
-			<table style="text-align: center; width: 100%;">
+			<table style="text-align: left; width: 100%;">
 				<tr>
 					<td colspan="2" style="text-align: right"><h:commandButton
 							action="register" value="Erregistratu" rendered="#{button.hide}"
@@ -71,7 +71,9 @@
 							<h:commandButton
 							action="login" value="Logeatu"  rendered="#{button.hide}"
 							style="width: 60px; font-size: 10px;" /></td></tr>
-				<tr><td colspan="2" style="text-align: right">
+				<tr><td><p>Erabiltzailea: <h:outputText id="erabiltzaileIzena"
+							value="#{login.u.erabIzena}" /></p></td>
+					<td style="text-align: right">
 						<h:commandButton
 							action="#{login.erabiltzaileaLogout}" value="Logout" rendered="#{button.nothide}"
 							style="width: 80px; font-size: 10px;" target="_self"/>

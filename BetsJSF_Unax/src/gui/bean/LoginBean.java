@@ -1,5 +1,7 @@
 package gui.bean;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
 
 import bl.bean.FacadeBean;
@@ -60,8 +62,6 @@ public class LoginBean {
 	public void setDisable(boolean disable) {
 		this.disable = disable;
 	}
-	
-	
 
 	public Erabiltzailea getU() {
 		return u;
@@ -73,9 +73,14 @@ public class LoginBean {
 
 	public String erabiltzaileaLogeatu() {
 		this.u = blFacade.login(this.erabIzena, this.pasahitza);
-		return "loged";
+		if (this.u != null)
+			return "loged";
+		else {
+			this.mezua = "Datu horiekin ez dator erabiltzailerik";
+			return null;
+		}
 	}
-	
+
 	public void erabiltzaileaLogout() {
 		this.u = null;
 	}

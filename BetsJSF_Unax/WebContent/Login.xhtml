@@ -24,13 +24,13 @@
 						</h:inputText></td></tr>
 				<tr>
 					<td><p>Pasahitza: </p></td>
-					<td><h:inputText id="pasahitza" value="#{login.pasahitza}">
+					<td><h:inputSecret id="pasahitza" redisplay="true"
+							value="#{login.pasahitza}">
 							<f:ajax event="change" listener="#{login.disableAztertu}"
-								render="botoia mezuak" />
-						</h:inputText></td></tr>
+								render="botoia mezuak" /></h:inputSecret></td></tr>
 				<tr>
 					<td colspan="2"><h:commandButton
-							id="botoia" value="Sortu galdera" action="#{login.erabiltzaileaLogeatu()}"
+							id="botoia" value="Log In" action="#{login.erabiltzaileaLogeatu()}"
 							disabled="#{login.disable}" update="mezuak"/></td></tr>
 				<tr>
 					<td colspan="2"><h:outputText

@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:view>
+	<h:head>
+		<title>Show All Events</title>
+		<h:outputStylesheet library="css" name="styleHasiera.css" />
+	</h:head>
+	<h:body>
+			<p>Events:</p><h:dataTable id="taula" value="#{showAllEvents.gertaerak}" var="item"
+							border="1">
+							<f:facet name="header">Events:</f:facet>
+							<h:column>
+								<f:facet name="header">Event Number</f:facet>
+								#{item.eventNumber}
+								</h:column>
+							<h:column>
+								<f:facet name="header">Description</f:facet>
+								#{item.description}
+								</h:column>
+							
+						</h:dataTable>
+		<h:form>
+			<table style="text-align: left; width: 100%;">
+				<tr>
+					<td colspan="2" style="text-align: right"><h:commandButton
+							action="register" value="Erregistratu" rendered="#{button.hide}"
+							style="width: 80px; font-size: 10px;" />
+							<h:commandButton
+							action="login" value="Logeatu"  rendered="#{button.hide}"
+							style="width: 60px; font-size: 10px;" /></td></tr>
+				<tr><td><p>Erabiltzailea: <h:outputText id="erabiltzaileIzena"
+							value="#{login.u.erabIzena}" /></p></td>
+					<td style="text-align: right">
+						<h:commandButton
+							action="#{login.erabiltzaileaLogout}" value="Logout" rendered="#{button.nothide}"
+							style="width: 80px; font-size: 10px;" target="_self"/>
+					</td></tr>
+			</table>
+		</h:form>
+	</h:body>
+</f:view>
+</html>

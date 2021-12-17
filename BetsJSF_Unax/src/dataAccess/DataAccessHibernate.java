@@ -209,6 +209,23 @@ public class DataAccessHibernate implements DataAccessInterface {
 		session.getTransaction().commit();
 		return res;
 	}
+	
+	@Override
+	public ArrayList<Event> getEvents() {
+		// TODO Auto-generated method stub
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		System.out.println(">> DataAccess: getEvents");
+		ArrayList<Event> res = new ArrayList<Event>();
+		Query q = session.createQuery("select ev from Event ev ");
+		List<Event> events = q.list();
+		for (Event ev : events) {
+			System.out.println(ev.toString());
+			res.add(ev);
+		}
+		session.getTransaction().commit();
+		return res;
+	}
 
 	@Override
 	public ArrayList<Date> getEventsMonth(Date date) {

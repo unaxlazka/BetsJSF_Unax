@@ -6,11 +6,6 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
 	<managed-bean>
-	<managed-bean-name>start</managed-bean-name>
-		<managed-bean-class>gui.bean.HasieraBean</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
 		<managed-bean-name>query</managed-bean-name>
 		<managed-bean-class>gui.bean.QueryQuestionsBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
@@ -28,11 +23,6 @@
 	<managed-bean>
 		<managed-bean-name>login</managed-bean-name>
 		<managed-bean-class>gui.bean.LoginBean</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
-		<managed-bean-name>user</managed-bean-name>
-		<managed-bean-class>gui.bean.UserBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>

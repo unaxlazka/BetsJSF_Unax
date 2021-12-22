@@ -33,6 +33,13 @@
 							id="botoia" value="Log In" action="#{login.erabiltzaileaLogeatu()}"
 							disabled="#{login.disable}" update="mezuak"/></td></tr>
 				<tr>
+					<td colspan="2" style="text-align: right">
+						<h:commandButton
+							action="return" value="Itzuli hasierara"
+							style="width: 100px; font-size: 10px;"/>
+					</td>
+				</tr>
+				<tr>
 					<td colspan="2"><h:outputText
 							value="#{login.mezua}" id="mezuak" /></td></tr>
 			</table>

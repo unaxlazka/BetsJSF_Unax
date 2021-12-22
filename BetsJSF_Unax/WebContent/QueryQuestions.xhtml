@@ -14,8 +14,16 @@
 		<h:form id="queryForm">
 			<table style="width: 100%">
 				<tr>
-					<td style="width: 40%; padding-left: 8%">
-						<h5>Gertaera eguna</h5> <p:calendar id="data"
+					<th colspan="2"><p>Gertaera eguna</p></th>
+					<th style="text-align: right">
+						<h:commandButton
+							action="return" value="Itzuli hasierara"
+							style="width: 100px; font-size: 10px;"/>
+					</th>
+				</tr>
+				<tr>
+					<td style="width: 40%; padding-left: 8%" colspan="2">
+						<p:calendar id="data"
 							value="#{query.data}" navigator="false" mode="inline">
 							<p:ajax event="dateSelect" listener="#{query.getEvents}"
 								update=":queryForm:aukeratutakoData :queryForm:taulaGertaerak" />
@@ -34,7 +42,7 @@
 						</p:dataTable></td>
 				</tr>
 				<tr>
-					<td style="padding-left: 25%; padding-right:25%" colspan="2"><h:outputText id="aukeratutakoGertaera"
+					<td style="padding-left: 25%; padding-right:25%" colspan="3"><h:outputText id="aukeratutakoGertaera"
 							value="#{query.gertaeraString}"/> <p:dataTable
 							id="taulaGalderak" value="#{query.galderak}" var="item"
 							selectionMode="single" selection="#{query.galdera}" border="1"

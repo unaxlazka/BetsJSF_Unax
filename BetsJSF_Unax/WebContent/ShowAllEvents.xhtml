@@ -11,35 +11,42 @@
 		<h:outputStylesheet library="css" name="styleHasiera.css" />
 	</h:head>
 	<h:body>
-			<p>Events:</p><h:dataTable id="taula" value="#{showAllEvents.gertaerak}" var="item"
-							border="1">
-							<f:facet name="header">Events:</f:facet>
-							<h:column>
-								<f:facet name="header">Event Number</f:facet>
+		<h:form><h:commandButton action="return" value="Itzuli hasierara"
+			style="width: 100px; font-size: 10px; float: right" /></h:form>
+		<p>Events:</p>
+		
+		
+
+		<h:dataTable id="taula" value="#{showAllEvents.gertaerak}" var="item"
+			border="1">
+			<f:facet name="header">Events:</f:facet>
+			<h:column>
+				<f:facet name="header">Event Number</f:facet>
 								#{item.eventNumber}
 								</h:column>
-							<h:column>
-								<f:facet name="header">Description</f:facet>
+			<h:column>
+				<f:facet name="header">Description</f:facet>
 								#{item.description}
 								</h:column>
-							
-						</h:dataTable>
+
+		</h:dataTable>
 		<h:form>
 			<table style="text-align: left; width: 100%;">
 				<tr>
 					<td colspan="2" style="text-align: right"><h:commandButton
 							action="register" value="Erregistratu" rendered="#{button.hide}"
-							style="width: 80px; font-size: 10px;" />
-							<h:commandButton
-							action="login" value="Logeatu"  rendered="#{button.hide}"
+							style="width: 80px; font-size: 10px;" /> <h:commandButton
+							action="login" value="Logeatu" rendered="#{button.hide}"
 							style="width: 60px; font-size: 10px;" /></td></tr>
-				<tr><td><p>Erabiltzailea: <h:outputText id="erabiltzaileIzena"
-							value="#{login.u.erabIzena}" /></p></td>
-					<td style="text-align: right">
-						<h:commandButton
-							action="#{login.erabiltzaileaLogout}" value="Logout" rendered="#{button.nothide}"
-							style="width: 80px; font-size: 10px;" target="_self"/>
-					</td></tr>
+				<tr>
+					<td><p>
+							Erabiltzailea:
+							<h:outputText id="erabiltzaileIzena" value="#{login.u.erabIzena}" />
+						</p></td>
+					<td style="text-align: right"><h:commandButton
+							action="#{login.erabiltzaileaLogout}" value="Logout"
+							rendered="#{button.nothide}"
+							style="width: 80px; font-size: 10px;" target="_self" /></td></tr>
 			</table>
 		</h:form>
 	</h:body>

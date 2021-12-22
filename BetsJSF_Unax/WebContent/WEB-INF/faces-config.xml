@@ -165,4 +165,44 @@
 			<to-view-id>/Login.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<display-name>QueryQuestions.xhtml</display-name>
+		<from-view-id>/QueryQuestions.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>return</from-outcome>
+			<to-view-id>/Bets.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>ShowAllEvents.xhtml</display-name>
+		<from-view-id>/ShowAllEvents.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>return</from-outcome>
+			<to-view-id>/Bets.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>Login.xhtml</display-name>
+		<from-view-id>/Login.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>return</from-outcome>
+			<to-view-id>/Bets.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>CreateQuestions.xhtml</display-name>
+		<from-view-id>/CreateQuestions.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>return</from-outcome>
+			<to-view-id>/Bets.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>Register.xhtml</display-name>
+		<from-view-id>/Register.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>return</from-outcome>
+			<to-view-id>/Bets.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 </faces-config>
